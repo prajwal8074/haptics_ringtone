@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1099091891572",
+    "project_id": "haptic-ringtones-analytics",
+    "storage_bucket": "haptic-ringtones-analytics.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1099091891572:android:e057d60f062b9e2d140821",
+        "android_client_info": {
+          "package_name": "com.prajwal.haptics"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDxFkugrp-UxrqgCZZSbo74Dj5h31p9FWg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

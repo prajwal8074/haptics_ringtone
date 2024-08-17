@@ -22,7 +22,7 @@ public class MainActivity extends FlutterActivity {
           (call, result) -> {
             if (call.method.equals("checkCallPermission")) {
               Context context = getApplicationContext();
-              Intent intent = new Intent(MainActivity.this, ReceiverService.class); // Build the intent for the service
+              Intent intent = new Intent(MainActivity.this, ReceiverService.class);
               context.startService(intent);
 
               int logPermission = ContextCompat.checkSelfPermission(MainActivity.this, Manifest.permission.READ_CALL_LOG);

@@ -10,8 +10,13 @@ import java.util.List;
 import java.util.Arrays;
 import android.os.Vibrator;
 import android.os.VibrationEffect;
+import android.os.Bundle;
+
+import com.google.firebase.analytics.FirebaseAnalytics;
 
 public class ServiceReceiver extends BroadcastReceiver {
+
+    private FirebaseAnalytics mFirebaseAnalytics;
 
     @Override
     public void onReceive(final Context context, Intent intent) {
@@ -30,9 +35,17 @@ public class ServiceReceiver extends BroadcastReceiver {
                     int[] intensities = Arrays.asList(haptics[2].replace(" ", "").replace("[", "").replace("]", "").split(","))
                                     .stream().mapToInt(Integer::parseInt).toArray();
                     vibrator.vibrate(VibrationEffect.createWaveform(pattern, intensities, 0));
+                    if(mFirebaseAnalytics == null)
+                        mFirebaseAnalytics = FirebaseAnalytics.getInstance(context);
+                    mFirebaseAnalytics.logEvent(haptics[0], new Bundle());
                 }catch(IOException e){}
             }else
+            {
                 vibrator.cancel();
+                if(mFirebaseAnalytics == null)
+                    mFirebaseAnalytics = FirebaseAnalytics.getInstance(context);
+                mFirebaseAnalytics.logEvent("ring_ended", new Bundle());
+            }
         }
     }
 
