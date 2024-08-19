@@ -37,7 +37,7 @@ public class ServiceReceiver extends BroadcastReceiver {
                     vibrator.vibrate(VibrationEffect.createWaveform(pattern, intensities, 0));
                     if(mFirebaseAnalytics == null)
                         mFirebaseAnalytics = FirebaseAnalytics.getInstance(context);
-                    mFirebaseAnalytics.logEvent(haptics[0], new Bundle());
+                    mFirebaseAnalytics.logEvent(haptics[0].trim().toLowerCase().replace(" ", "_"), new Bundle());
                 }catch(IOException e){}
             }else
             {
