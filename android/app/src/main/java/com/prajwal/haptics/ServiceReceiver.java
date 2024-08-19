@@ -17,6 +17,7 @@ import com.google.firebase.analytics.FirebaseAnalytics;
 public class ServiceReceiver extends BroadcastReceiver {
 
     private FirebaseAnalytics mFirebaseAnalytics;
+    String[] haptics;
 
     @Override
     public void onReceive(final Context context, Intent intent) {
@@ -27,24 +28,23 @@ public class ServiceReceiver extends BroadcastReceiver {
             Vibrator vibrator = context.getSystemService(Vibrator.class);
             if(stateStr.equals(TelephonyManager.EXTRA_STATE_RINGING))
             {
+                if(mFirebaseAnalytics == null)
+                    mFirebaseAnalytics = FirebaseAnalytics.getInstance(context);
                 File dataDir = new File(context.getFilesDir().getAbsolutePath().replace("files", "app_flutter"));
                 try{
-                    String[] haptics = readFromFile(new File(dataDir, "setRingtone.hr.txt"));
+                    haptics = readFromFile(new File(dataDir, "setRingtone.hr.txt"));
                     long[] pattern = Arrays.asList(haptics[1].replace(" ", "").replace("[", "").replace("]", "").split(","))
                                     .stream().mapToLong(Long::parseLong).toArray();
                     int[] intensities = Arrays.asList(haptics[2].replace(" ", "").replace("[", "").replace("]", "").split(","))
                                     .stream().mapToInt(Integer::parseInt).toArray();
                     vibrator.vibrate(VibrationEffect.createWaveform(pattern, intensities, 0));
-                    if(mFirebaseAnalytics == null)
-                        mFirebaseAnalytics = FirebaseAnalytics.getInstance(context);
-                    mFirebaseAnalytics.logEvent(haptics[0].trim().toLowerCase().replace(" ", "_"), new Bundle());
                 }catch(IOException e){}
             }else
             {
                 vibrator.cancel();
-                if(mFirebaseAnalytics == null)
-                    mFirebaseAnalytics = FirebaseAnalytics.getInstance(context);
-                mFirebaseAnalytics.logEvent("ring_ended", new Bundle());
+                if(mFirebaseAnalytics != null)
+                    if(haptics != null)
+                        mFirebaseAnalytics.logEvent(haptics[0].trim().toLowerCase().replace(" ", "_"), new Bundle());
             }
         }
     }
