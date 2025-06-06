@@ -1,3 +1,4 @@
 # haptics_ringtone
 
-A new Flutter project.
+#To-Do
+change fb link to discord in the app
