@@ -117,10 +117,10 @@ class MainThemeState extends State<MainTheme> {
 }
 
 void checkVersion(BuildContext context) async{
-	http.read(Uri.https('haptically.app', 'version.txt')).then((versionStr){
+	http.read(Uri.https('prajwal8074.github.io', '/haptics_website/version.txt')).then((versionStr){
 		if(double.parse(versionStr) > version)
 		{
-			http.read(Uri.https('haptically.app', 'whatsNew.txt')).then((whatsNew){
+			http.read(Uri.https('prajwal8074.github.io', '/haptics_website/whatsNew.txt')).then((whatsNew){
 				showDialog<void>(
 		      context: context,
 		      builder: (BuildContext context) {
@@ -140,7 +140,7 @@ void checkVersion(BuildContext context) async{
 		                textStyle: Theme.of(context).textTheme.labelLarge,
 		              ),
 		              child: const Text('Check'),
-		              onPressed: () {Navigator.of(context).pop();launchUrl(Uri.parse('https://haptically.app'));},
+		              onPressed: () {Navigator.of(context).pop();launchUrl(Uri.parse('https://prajwal8074.github.io/haptics_website/'));},
 		            ),
 		          ],
 		        );
@@ -227,7 +227,7 @@ class _MainState extends State<MainApp> with SingleTickerProviderStateMixin {
 					        return AlertDialog(
 					          title: Text('Tutorial', style: Theme.of(context).textTheme.titleLarge),
 					          content: const Text(
-					            'Prerequisite: Disable Ring Vibration/Haptics in your Settings app\n\nLaunchpad: Long press on left tiles and tap on right tiles to customize vibrations',
+					            'Put phone in silent mode\n\nLaunchpad Usage: long press on right tiles and tap on left tiles\n\nLaunchpad Customization: long press on left tiles and tap on right tiles',
 					          ),
 					          actions: <Widget>[
 					            TextButton(
@@ -241,9 +241,8 @@ class _MainState extends State<MainApp> with SingleTickerProviderStateMixin {
 					        );
 					      },
 					    );break;
-	        	case 1: launchUrl(Uri.parse('https://haptically.app'));break;
-	        	case 2: launchUrl(Uri.parse('mailto:prajwal8074@gmail.com?subject=New%20Ringtone%20Request&body=I%20want%20a%20Haptic%20Ringtone%20for%20(Song/Music)'));break;
-	        	case 3: launchUrl(Uri.parse('mailto:prajwal8074@gmail.com?subject=Regarding%20Haptic%20Ringtones'));break;
+	        	case 1: launchUrl(Uri.parse('https://prajwal8074.github.io/haptics_website/'));break;
+	        	case 2: launchUrl(Uri.parse('mailto:prajwal8074@gmail.com?subject=Regarding%20Haptic%20Ringtones'));break;
 	        }
 	      },
         selectedIndex: null,
@@ -281,12 +280,6 @@ class _MainState extends State<MainApp> with SingleTickerProviderStateMixin {
             icon: Icon(Icons.settings_outlined),
             selectedIcon: Icon(Icons.settings),
         	),*/
-        	NavigationDrawerDestination(
-            label: Text("Request Ringtone"),
-            //icon: Icon(Icons.reviews_outlined),
-            //selectedIcon: Icon(Icons.reviews),
-            icon: Icon(Icons.attach_email),
-        	),
           NavigationDrawerDestination(
             label: Text("Contact"),
             //icon: Icon(Icons.email_outlined),
