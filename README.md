@@ -1,3 +1,1 @@
-# haptics_ringtone
-
-# To-Do
+# Compete Information available on Website
